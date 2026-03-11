@@ -17,6 +17,12 @@
   <strong>Hedera Hello Future Apex Hackathon 2026 — Sustainability Track</strong>
 </p>
 
+<p align="center">
+  <a href="https://dashboard-iota-nine-90.vercel.app"><strong>🌐 Live Dashboard</strong></a> ·
+  <a href="https://hashscan.io/testnet/contract/0.0.8170470"><strong>📋 HashScan</strong></a> ·
+  <a href="https://github.com/mirror-compass/prometheus-hedera"><strong>💻 Source Code</strong></a>
+</p>
+
 ---
 
 ## What Is Prometheus?
@@ -187,25 +193,31 @@ Tests cover:
 ## Project Structure
 
 ```
-prometheus/
+prometheus-hedera/
 ├── contracts/
-│   ├── PrometheusImpact.sol      # Fund allocation & impact tracking
-│   ├── KnowledgeRegistry.sol     # Knowledge base hash registry
-│   └── DeviceRegistry.sol        # Device lifecycle tracking
+│   ├── PrometheusImpact.sol        # Fund allocation & impact tracking
+│   ├── KnowledgeRegistry.sol       # Knowledge base hash registry
+│   └── DeviceRegistry.sol          # Device lifecycle tracking
 ├── test/
-│   ├── PrometheusImpact.test.js
+│   ├── PrometheusImpact.test.js    # 39 tests across all contracts
 │   ├── KnowledgeRegistry.test.js
 │   └── DeviceRegistry.test.js
 ├── scripts/
-│   ├── deploy.js                 # Hedera testnet deployment
-│   └── simulate.js               # End-to-end simulation
-├── frontend/                     # Transparency dashboard
+│   ├── deploy.js                   # Hedera testnet deployment
+│   ├── simulate-purchase.js        # Simulate device purchase flow
+│   ├── anchor-knowledge.js         # Anchor knowledge base hashes
+│   └── register-device.js          # Register & deploy devices
+├── dashboard/                      # React transparency dashboard (Vite + Tailwind)
+│   └── src/
+│       ├── components/             # FundTracker, DeviceMap, KnowledgeVerifier, ImpactFeed
+│       ├── hooks/                  # Mirror Node API hooks
+│       └── utils/                  # Contract addresses, constants
 ├── docs/
-│   ├── white-paper.md
-│   └── hackathon-proposal.md
+│   ├── Project_Prometheus_White_Paper_v1.docx
+│   └── Prometheus_Hedera_Hackathon_Proposal.docx
 ├── hardhat.config.js
 ├── package.json
-└── .env                          # Contract IDs (see .env.example)
+└── .env.example                    # Template for Hedera credentials
 ```
 
 ---
