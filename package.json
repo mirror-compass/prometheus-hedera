@@ -1,0 +1,37 @@
+{
+  "name": "prometheus-hedera",
+  "version": "1.0.0",
+  "description": "Hedera trust layer for Project Prometheus — the decentralized field brain",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "deploy": "node scripts/deploy.js",
+    "simulate": "node scripts/simulate-purchase.js",
+    "anchor": "node scripts/anchor-knowledge.js",
+    "register-device": "node scripts/register-device.js",
+    "dashboard": "cd dashboard && npm run dev"
+  },
+  "dependencies": {
+    "@hashgraph/sdk": "^2.51.0",
+    "dotenv": "^16.4.0",
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/prometheus-hedera"
+  },
+  "keywords": [
+    "hedera",
+    "hackathon",
+    "sustainability",
+    "humanitarian",
+    "offline-ai",
+    "raspberry-pi",
+    "open-source"
+  ]
+}
