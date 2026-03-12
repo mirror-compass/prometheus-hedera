@@ -22,6 +22,7 @@ const {
   AccountId,
   PrivateKey,
   ContractCreateFlow,
+  ContractExecuteTransaction,
   ContractFunctionParameters,
   TopicCreateTransaction,
   Hbar,
@@ -57,7 +58,7 @@ async function main() {
   console.log(`Network:  testnet\n`);
 
   // 2. Create HCS topic for knowledge audit trail
-  console.log("[1/4] Creating HCS topic for knowledge audit trail...");
+  console.log("[1/5] Creating HCS topic for knowledge audit trail...");
   const topicTx = await new TopicCreateTransaction()
     .setTopicMemo("Prometheus Knowledge Audit Trail")
     .setAdminKey(privateKey)
@@ -68,11 +69,11 @@ async function main() {
   console.log(`  HCS Topic ID: ${topicId}\n`);
 
   // 3. Deploy PrometheusImpact
-  console.log("[2/4] Deploying PrometheusImpact...");
+  console.log("[2/5] Deploying PrometheusImpact...");
   const impactBytecode = loadBytecode("PrometheusImpact");
   const impactTx = await new ContractCreateFlow()
     .setBytecode(impactBytecode)
-    .setGas(1_500_000)
+    .setGas(3_000_000)
     .setConstructorParameters(
       new ContractFunctionParameters()
         .addUint256(DEPLOYMENT_SPLIT_BPS)
@@ -84,8 +85,19 @@ async function main() {
   console.log(`  PrometheusImpact Contract ID: ${impactContractId}`);
   console.log(`  PrometheusImpact EVM Address: ${impactContractId.toSolidityAddress()}\n`);
 
+  // 3b. Create Prometheus Impact Token (PIT) via HTS precompile on the contract
+  console.log("[3/5] Creating Prometheus Impact Token (PIT) via HTS precompile...");
+  const createTokenTx = await new ContractExecuteTransaction()
+    .setContractId(impactContractId)
+    .setGas(1_500_000)
+    .setPayableAmount(new Hbar(20)) // Covers HTS token creation fee
+    .setFunction("createImpactToken")
+    .execute(client);
+  const createTokenReceipt = await createTokenTx.getReceipt(client);
+  console.log(`  PIT Token creation TX status: ${createTokenReceipt.status}\n`);
+
   // 4. Deploy KnowledgeRegistry
-  console.log("[3/4] Deploying KnowledgeRegistry...");
+  console.log("[4/5] Deploying KnowledgeRegistry...");
   const knowledgeBytecode = loadBytecode("KnowledgeRegistry");
   const knowledgeTx = await new ContractCreateFlow()
     .setBytecode(knowledgeBytecode)
@@ -97,7 +109,7 @@ async function main() {
   console.log(`  KnowledgeRegistry EVM Address: ${knowledgeContractId.toSolidityAddress()}\n`);
 
   // 5. Deploy DeviceRegistry
-  console.log("[4/4] Deploying DeviceRegistry...");
+  console.log("[5/5] Deploying DeviceRegistry...");
   const deviceBytecode = loadBytecode("DeviceRegistry");
   const deviceTx = await new ContractCreateFlow()
     .setBytecode(deviceBytecode)
@@ -114,6 +126,7 @@ async function main() {
   console.log("=".repeat(60));
   console.log(`HCS Topic ID:              ${topicId}`);
   console.log(`PrometheusImpact:          ${impactContractId} (0x${impactContractId.toSolidityAddress()})`);
+  console.log(`  PIT Token:               Created via HTS precompile`);
   console.log(`KnowledgeRegistry:         ${knowledgeContractId} (0x${knowledgeContractId.toSolidityAddress()})`);
   console.log(`DeviceRegistry:            ${deviceContractId} (0x${deviceContractId.toSolidityAddress()})`);
   console.log(`Deployment Split:          ${DEPLOYMENT_SPLIT_BPS / 100}%`);

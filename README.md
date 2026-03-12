@@ -19,7 +19,7 @@
 
 <p align="center">
   <a href="https://dashboard-iota-nine-90.vercel.app"><strong>🌐 Live Dashboard</strong></a> ·
-  <a href="https://hashscan.io/testnet/contract/0.0.8170470"><strong>📋 HashScan</strong></a> ·
+  <a href="https://hashscan.io/testnet/contract/0.0.8171328"><strong>📋 HashScan</strong></a> ·
   <a href="https://github.com/mirror-compass/prometheus-hedera"><strong>💻 Source Code</strong></a>
 </p>
 
@@ -75,12 +75,13 @@ Domain experts submit knowledge base proposals to HCS. Governance token holders 
 
 All contracts are deployed and verifiable on HashScan:
 
-| Component | Contract ID | HashScan |
-|-----------|-------------|----------|
-| **PrometheusImpact** | `0.0.8170470` | [View on HashScan](https://hashscan.io/testnet/contract/0.0.8170470) |
-| **KnowledgeRegistry** | `0.0.8170475` | [View on HashScan](https://hashscan.io/testnet/contract/0.0.8170475) |
-| **DeviceRegistry** | `0.0.8170480` | [View on HashScan](https://hashscan.io/testnet/contract/0.0.8170480) |
-| **HCS Topic** | `0.0.8170468` | [View on HashScan](https://hashscan.io/testnet/topic/0.0.8170468) |
+| Component | Contract/Token ID | HashScan |
+|-----------|-------------------|----------|
+| **PrometheusImpact** | `0.0.8171328` | [View on HashScan](https://hashscan.io/testnet/contract/0.0.8171328) |
+| **Impact Token (PIT)** | `0.0.8171329` | [View on HashScan](https://hashscan.io/testnet/token/0.0.8171329) |
+| **KnowledgeRegistry** | `0.0.8171332` | [View on HashScan](https://hashscan.io/testnet/contract/0.0.8171332) |
+| **DeviceRegistry** | `0.0.8171336` | [View on HashScan](https://hashscan.io/testnet/contract/0.0.8171336) |
+| **HCS Topic** | `0.0.8171323` | [View on HashScan](https://hashscan.io/testnet/topic/0.0.8171323) |
 
 ---
 

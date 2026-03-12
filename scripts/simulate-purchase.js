@@ -18,7 +18,7 @@ const {
   ContractId,
 } = require("@hashgraph/sdk");
 
-const PURCHASE_AMOUNT_HBAR = 500; // Simulated device purchase price
+const PURCHASE_AMOUNT_HBAR = 50; // Simulated device purchase price
 
 async function main() {
   const accountId = AccountId.fromString(process.env.HEDERA_ACCOUNT_ID);
